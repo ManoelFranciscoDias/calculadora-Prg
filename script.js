@@ -175,3 +175,11 @@ deleteButtons.addEventListener("click", () => {
   calculator.delete();
   calculator.updateDisplay();
 });
+
+document.addEventListener("keydown", (event) => {
+  // Verificando se a tecla pressionada é um número (0-9)
+  if (event.key >= "0" && event.key <= "9") {
+    calculator.appendNumber(event.key);
+    calculator.updateDisplay();
+  }
+});
