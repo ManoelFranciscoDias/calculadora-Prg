@@ -57,11 +57,9 @@ class Calculator {
     const _previousOperand = parseFloat(this.previousOperand);
     const _currentOperand = parseFloat(this.currentOperand);
 
-
     //VERIFICANDO NUMERO
 
     if (isNaN(_previousOperand) || isNaN(_currentOperand)) return;
-
 
     //CALCULANDO AS OPERAÇÕES
 
@@ -127,17 +125,12 @@ class Calculator {
   }
 }
 
-
-
-
 const calculator = new Calculator(
   previousOperandTextElement,
   currentOperandTextElement
 );
 
-
 //BOTÔES DE NUMEROS
-
 
 for (const numberButton of numberButtons) {
   numberButton.addEventListener("click", () => {
@@ -168,7 +161,6 @@ equalsButtons.addEventListener("click", () => {
   calculator.updateDisplay();
 });
 
-
 //BOTÃO DE DELETE
 
 deleteButtons.addEventListener("click", () => {
@@ -177,18 +169,31 @@ deleteButtons.addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", (event) => {
-  
   if (event.key >= "0" && event.key <= "9") {
     calculator.appendNumber(event.key);
     calculator.updateDisplay();
-  }
-
-  else if (event.key === "+" || event.key === "-" || event.key === "*" || event.key === "/") {
+  } else if (
+    event.key === "+" ||
+    event.key === "-" ||
+    event.key === "*" ||
+    event.key === "/"
+  ) {
     calculator.chooseOperation(event.key);
     calculator.updateDisplay();
-  } else if (event.key === "Enter" || event.key === "=") {
+  } else if (event.key === "=") {
     calculator.calculate();
-    calculator.updateDisplay(); }
+    calculator.updateDisplay();
+  }
+
+   else if (event.key === "Backspace") {
+    calculator.delete();
+    calculator.updateDisplay();
+  }
+
+  else if (event.key === "Delete") {
+    calculator.clear()
+    calculator.updateDisplay();
+  }
+
 
 });
-
